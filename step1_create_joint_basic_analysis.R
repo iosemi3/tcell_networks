@@ -85,8 +85,6 @@ pmbc_1103<-FindVariableFeatures(pmbc_1103, selection.method = 'mean.var.plot',bi
 pmbc_1103<- RunPCA(pmbc_1103,ndims.print = c(1,3,5), verbose = T)
 DimPlot(pmbc_1103)
 DimHeatmap(pmbc_1103,dims = c(1,2))
-pbmc <- JackStraw(pmbc_1103, red,num.replicate = 100)
-pbmc <- ScoreJackStraw(pmbc_1103, dims = 1:20)
 pmbc_1103<- FindNeighbors(pmbc_1103, dims = 1:30,reduction = 'PCA_RNA')
 pmbc_1103<- FindClusters(pmbc_1103, resolution = 0.2)
 # marker genes
@@ -96,7 +94,6 @@ write.table(cluster_markers,'marker_genes_cluster_tcellmultiome.tsv')
 #########
 ElbowPlot(pmbc_1103,reduction = 'PCA_RNA')
 pmbc_1103 <- RunPCA(pmbc_1103)
-VizDimLoadings(pmbc_1103, dims = 1:10, reduction = "PCA_RNA")
 
 ###cell anotation
 ### automatic cell annotation by SingleR
