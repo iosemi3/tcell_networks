@@ -37,8 +37,8 @@ pmbc_rdata_file<- 'results/pmbc_1103.rds'
 
 #-=-=-=-=-=-=-=-=-=
 # load the RNA and ATAC data
-counts <- Read10X_h5("/Users/sebas/documents/atac_tcell/from_server/filtered_feature_bc_matrix.h5")
-fragpath <- "/Users/sebas/documents/atac_tcell/from_server/atac_fragments.tsv.gz"
+counts <- Read10X_h5(input_feature_matrix)
+fragpath <- paste(input_fragments)
 # get gene annotations for hg38
 annotation <-GetGRangesFromEnsDb(ensdb = EnsDb.Hsapiens.v86)
 seqlevelsStyle(annotation) <- "UCSC"
