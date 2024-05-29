@@ -86,8 +86,8 @@ pmbc_1103<-FindVariableFeatures(pmbc_1103, selection.method = 'mean.var.plot',bi
 
 #####
 pmbc_1103<- RunPCA(pmbc_1103,ndims.print = c(1,3,5), verbose = T, reduction.name = "PCA_RNA")
-pmbc_1103<- FindNeighbors(pmbc_1103, dims = 1:30)
-pmbc_1103<- FindClusters(pmbc_1103, resolution = 0.2)
+pmbc_1103<- FindNeighbors(pmbc_1103, dims = 1:30, reduction = "PCA_RNA" )
+pmbc_1103<- FindClusters(pmbc_1103, resolution = 0.2, reduction = "PCA_RNA")
 # marker genes
 cluster_mar_gene=FindAllMarkers(pmbc_1103, only.pos = F, test.use = 'negbinom')
 
