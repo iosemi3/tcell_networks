@@ -57,7 +57,7 @@ pbmc[["ATAC"]] <- CreateChromatinAssay(
 )
 pmbc_1103 <-pbmc
 pmbc_1103
-subset_cells <- sample(colnames(pmbc_1103), 1500)
+subset_cells <- sample(colnames(pmbc_1103),5000)
 pmbc_1103 <- subset(pmbc_1103, cells = subset_cells)
 
 remove(counts)
