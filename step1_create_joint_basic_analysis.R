@@ -21,11 +21,6 @@ set.seed(1234)
 ################-----SNAKEMAKE
 input_feature_matrix <- snakemake@input$input_feature_matrix
 input_fragments <- snakemake@input$input_fragments
-#input_feature_matrix <- Read10X_h5("/Users/sebas/documents/atac_tcell/from_server/filtered_feature_bc_matrix.h5")
-#input_fragments <- "/Users/sebas/documents/atac_tcell/from_server/atac_fragments.tsv.gz"
-
-umap_plot_file <- "results/umap_plot.pdf"
-piechart_plot_file<- 'results/piechart.pdf'
 pmbc_rdata_file<- 'results/pmbc_1103.rds'
 
 
