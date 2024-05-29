@@ -107,43 +107,5 @@ colnames(pmbc_1103@meta.data)[which(names(pmbc_1103@meta.data) == "labels")] <- 
 Idents(pmbc_1103)=pmbc_1103@meta.data$labels.DICE
 pmbc_1103<- RunUMAP(pmbc_1103, dims = 1:30,reduction = 'PCA_RNA',
                     reduction.name ='umap' )
-#export as pdf
-umap_plot<-DimPlot(pmbc_1103, reduction = "umap",pt.size = 1.5)
-pdf(umap_plot_file)
-print(umap_plot)
-dev.off()
 
-#piechart
-piechart <- tibble(
-  cluster = pmbc_1103$seurat_clusters,
-  cell_type = pmbc_1103$labels.DICE
-) %>%
-  group_by(cluster,cell_type) %>%
-  count() %>%
-  group_by(cluster) %>%
-  mutate(
-    percent=(100*n)/sum(n)
-  ) %>%
-  ungroup() %>%
-  mutate(
-    cluster=paste("Cluster",cluster)
-  ) %>%
-  ggplot(aes(x="",y=percent, fill=cell_type)) +
-  geom_col(width=1) +scale_color_manual(values = c( "T cells, CD4+, naive, stimulated"="darkgreen",
-                                                    "T cells, CD4+, naive"="red",
-                                                    "T cells, CD4+, naive TREG"="black",
-                                                    "T cells, CD4+, Th1"="yellow4",
-                                                    "T cells, CD4+, Th1_17"="royalblue1",
-                                                    "T cells, CD4+, Th2"="darkmagenta")) +
-  coord_polar("y", start=0) +
-  facet_wrap(vars(cluster)) +  
-  theme(axis.text.x=element_blank()) +
-  xlab(NULL) +
-  ylab(NULL)+ggtitle('Celltype abundance per cluster RNA')
-
-pdf(piechart)
-print(piechart)
-dev.off()
-
-#export pmbc_1103
 saveRDS(pmbc_1103, pmbc_rdata_file)
