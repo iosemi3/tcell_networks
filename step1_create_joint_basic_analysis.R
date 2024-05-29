@@ -85,7 +85,7 @@ pmbc_1103<-FindVariableFeatures(pmbc_1103, selection.method = 'mean.var.plot',bi
 #pmbc_1103<- ScaleData(pmbc_1103, features = rownames(pmbc_1103))
 
 #####
-pmbc_1103<- RunPCA(pmbc_1103,ndims.print = c(1,3,5), verbose = T)
+pmbc_1103<- RunPCA(pmbc_1103,ndims.print = c(1,3,5), verbose = T, reduction.name = "PCA_RNA")
 pmbc_1103<- FindNeighbors(pmbc_1103, dims = 1:30)
 pmbc_1103<- FindClusters(pmbc_1103, resolution = 0.2)
 # marker genes
